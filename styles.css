@@ -201,6 +201,7 @@ main { max-width: var(--max); margin: 0 auto; padding: 0 16px; }
 .skill-group ul { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
 .skill-group li { font-size: .85rem; padding: 5px 12px; border-radius: 999px; background: var(--bg-2); color: var(--muted); }
 .contact__lead { color: var(--muted); font-size: 1.1rem; }
+.contact__email { margin-top: 20px; font-family: "JetBrains Mono", monospace; font-size: .9rem; color: var(--muted); }
 
 .footer { text-align: center; color: var(--muted); font-size: .85rem; padding: 64px 16px 32px; }
 
