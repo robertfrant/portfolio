@@ -147,6 +147,67 @@
         </div>
       </article>
 
+      <article class="project">
+        <div class="project__info">
+          <div class="project__head">
+            <div class="project__logo project__logo--text">lei</div>
+            <div>
+              <p class="tag">Proiect master · 2026</p>
+              <h3>Aplicație de salarizare</h3>
+            </div>
+          </div>
+          <p class="project__summary">
+            O aplicație web prin care o firmă își gestionează angajații și calculează automat salariile:
+            de la salariul de bază și sporuri până la contribuții, impozit și suma virată pe card.
+          </p>
+
+          <ul class="features">
+            <li><strong>Gestiune angajați</strong>: adăugare, actualizare și ștergere, cu validări pe fiecare câmp (obligatoriu, interval, format).</li>
+            <li><strong>Calcul automat</strong> al salariilor prin proceduri stocate în Oracle, refăcut la orice modificare de date.</li>
+            <li><strong>Procente configurabile</strong> pentru CAS, CASS și impozit, cu acces protejat prin parolă.</li>
+            <li><strong>Rapoarte</strong> Crystal Reports: stat de plată cu totaluri și fluturași de salariu pentru toți angajații sau pentru unul anume, cu export PDF.</li>
+            <li><strong>Banner dinamic</strong> cu AJAX (UpdatePanel + Timer) care se actualizează fără reîncărcarea paginii.</li>
+          </ul>
+
+          <ul class="stack">
+            <li>C#</li><li>ASP.NET Web Forms</li><li>.NET Framework 4.7.2</li><li>Oracle / PL-SQL</li>
+            <li>Crystal Reports</li><li>Bootstrap 5</li>
+          </ul>
+
+          <details class="tech">
+            <summary>Detalii tehnice</summary>
+            <ul>
+              <li>Pagini construite pe un <code>Site.Master</code> comun, cu meniu pe categorii: introducere date, tipărire, procente.</li>
+              <li>Acces la date cu <code>SqlDataSource</code> legat de <code>GridView</code>, <code>DetailsView</code> și <code>FormView</code>, cu interogări parametrizate.</li>
+              <li>Logica de calcul în proceduri stocate Oracle (<code>UPDATE_PROCENTE</code>, <code>RECALCULEAZA_SALARII</code>), apelate din C#.</li>
+              <li>Validare cu <code>RequiredFieldValidator</code>, <code>RangeValidator</code> și <code>RegularExpressionValidator</code>.</li>
+              <li>Rapoarte <code>.rpt</code> încărcate dinamic cu <code>ReportDocument</code>, filtrate după criteriile utilizatorului.</li>
+            </ul>
+          </details>
+        </div>
+
+        <!-- Machetă interactivă: stat de plată -->
+        <div class="phone-wrap">
+          <div class="browser" aria-label="Machetă interactivă stat de plată">
+            <div class="browser__bar"><span></span><span></span><span></span><p>Stat de plată</p></div>
+            <div class="browser__body">
+              <div class="rates">
+                <label>CAS <input type="number" id="r-cas" value="25" min="0" max="50" step="0.5">%</label>
+                <label>CASS <input type="number" id="r-cass" value="10" min="0" max="50" step="0.5">%</label>
+                <label>Impozit <input type="number" id="r-imp" value="10" min="0" max="50" step="0.5">%</label>
+              </div>
+              <table class="payroll">
+                <thead><tr><th>Angajat</th><th>Brut</th><th>Net</th><th>Card</th></tr></thead>
+                <tbody id="payroll-body"></tbody>
+                <tfoot><tr><td>Total</td><td id="t-brut"></td><td id="t-net"></td><td id="t-card"></td></tr></tfoot>
+              </table>
+              <p class="browser__note">Date fictive și formulă simplificată, doar pentru demonstrație.</p>
+            </div>
+          </div>
+          <p class="phone-hint">Încearcă: schimbă procentele ↑</p>
+        </div>
+      </article>
+
       <div class="more">
         <p>Mai multe proiecte în curând.</p>
       </div>

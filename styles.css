@@ -97,6 +97,41 @@ main { max-width: var(--max); margin: 0 auto; padding: 0 16px; }
 .tech ul { margin: 12px 0 0 20px; display: grid; gap: 8px; color: var(--muted); font-size: .9rem; }
 .project__links { margin-top: 28px; }
 
+.project + .project { margin-top: 32px; }
+.project__logo--text {
+  display: grid; place-items: center; padding: 0;
+  font-size: 1.1rem; font-weight: 700; color: var(--accent);
+}
+
+/* BROWSER MOCKUP (stat de plată) */
+.browser {
+  width: 100%; max-width: 400px; background: #fff; color: #1d1d1f;
+  border-radius: 14px; overflow: hidden;
+  box-shadow: 0 0 0 1px #2b2b3a, 0 30px 80px -20px rgba(255, 142, 1, .25);
+}
+.browser__bar { display: flex; align-items: center; gap: 6px; padding: 10px 12px; background: #e9e9ef; }
+.browser__bar span { width: 10px; height: 10px; border-radius: 50%; background: #c8c8d0; }
+.browser__bar p { margin-left: 8px; font-size: .75rem; color: #555; }
+.browser__body { padding: 14px; }
+.rates { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+.rates label {
+  display: flex; align-items: center; gap: 4px; font-size: .72rem; font-weight: 600;
+  background: #f1f1f5; padding: 4px 8px; border-radius: 8px;
+}
+.rates input {
+  width: 46px; padding: 3px 4px; border: 1px solid #ccc; border-radius: 6px;
+  font: 500 .75rem "JetBrains Mono", monospace;
+}
+.rates input:focus { outline: 2px solid var(--accent); border-color: transparent; }
+.payroll { width: 100%; border-collapse: collapse; font-size: .72rem; }
+.payroll th { background: #212529; color: #fff; font-weight: 600; text-align: right; padding: 6px; }
+.payroll td { padding: 6px; text-align: right; border-bottom: 1px solid #eee; font-family: "JetBrains Mono", monospace; }
+.payroll th:first-child, .payroll td:first-child { text-align: left; font-family: "Poppins", sans-serif; }
+.payroll tfoot td { font-weight: 700; background: #fff4e5; border-bottom: 0; }
+.payroll td.flash { animation: flash .6s; }
+@keyframes flash { from { background: #ffe2b8; } }
+.browser__note { margin-top: 10px; font-size: .65rem; color: #888; }
+
 .more {
   margin-top: 24px; padding: 28px; text-align: center; color: var(--muted);
   border: 1px dashed var(--line); border-radius: var(--radius);

@@ -1,5 +1,33 @@
 document.getElementById('year').textContent = new Date().getFullYear();
 
+// --- Macheta aplicației de salarizare: stat de plată recalculat la schimbarea procentelor ---
+const employees = [
+  { name: 'Popescu Ana', base: 6500, spor: 10, premii: 500, retineri: 0 },
+  { name: 'Ionescu Mihai', base: 8200, spor: 5, premii: 0, retineri: 300 },
+  { name: 'Radu Elena', base: 5400, spor: 15, premii: 250, retineri: 0 },
+  { name: 'Stan Andrei', base: 9800, spor: 0, premii: 1000, retineri: 450 },
+];
+const fmt = n => Math.round(n).toLocaleString('ro-RO');
+const rate = id => Math.max(0, Number(document.getElementById(id).value) || 0) / 100;
+
+function renderPayroll() {
+  const cas = rate('r-cas'), cass = rate('r-cass'), imp = rate('r-imp');
+  let tBrut = 0, tNet = 0, tCard = 0;
+  document.getElementById('payroll-body').innerHTML = employees.map(e => {
+    const brut = e.base * (1 + e.spor / 100) + e.premii;
+    const contrib = brut * (cas + cass);
+    const net = brut - contrib - (brut - contrib) * imp;
+    const card = net - e.retineri;
+    tBrut += brut; tNet += net; tCard += card;
+    return `<tr><td>${e.name}</td><td>${fmt(brut)}</td><td class="flash">${fmt(net)}</td><td class="flash">${fmt(card)}</td></tr>`;
+  }).join('');
+  document.getElementById('t-brut').textContent = fmt(tBrut);
+  document.getElementById('t-net').textContent = fmt(tNet);
+  document.getElementById('t-card').textContent = fmt(tCard);
+}
+['r-cas', 'r-cass', 'r-imp'].forEach(id => document.getElementById(id).addEventListener('input', renderPayroll));
+renderPayroll();
+
 // --- Macheta DulApp: date demo care imită garderoba din aplicație ---
 const IMG = {
   Tricou: 'assets/dulapp/shirt.png',
