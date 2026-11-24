@@ -12,6 +12,14 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <div class="bg" aria-hidden="true">
+    <div class="bg__grid"></div>
+    <div class="bg__blob bg__blob--1"></div>
+    <div class="bg__blob bg__blob--2"></div>
+    <div class="bg__blob bg__blob--3"></div>
+  </div>
+  <div class="progress" aria-hidden="true"></div>
+
   <header class="nav">
     <a href="#top" class="nav__brand">robert<span>.</span>frant</a>
     <nav class="nav__links">
@@ -27,7 +35,7 @@
     <section class="hero">
       <p class="eyebrow">Salut, eu sunt</p>
       <h1>Robert Frant</h1>
-      <p class="hero__role">Developer · aplicații mobile &amp; web</p>
+      <p class="hero__role">Developer · <span class="typed" id="typed">aplicații mobile &amp; web</span></p>
       <p class="hero__lead">
         Construiesc aplicații de la cap la coadă: interfață, logică și backend.
         Mai jos găsești proiectele la care am lucrat, începând cu lucrarea mea de licență.

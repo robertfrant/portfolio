@@ -1,5 +1,55 @@
 document.getElementById('year').textContent = new Date().getFullYear();
 
+const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// --- Bară de progres + link activ în meniu ---
+const progress = document.querySelector('.progress');
+const navLinks = [...document.querySelectorAll('.nav__links a')];
+const sections = navLinks.map(a => document.querySelector(a.getAttribute('href')));
+function onScroll() {
+  const max = document.documentElement.scrollHeight - innerHeight;
+  progress.style.setProperty('--p', max > 0 ? scrollY / max : 0);
+  let current = -1;
+  sections.forEach((s, i) => { if (s.getBoundingClientRect().top < innerHeight * 0.4) current = i; });
+  navLinks.forEach((a, i) => a.classList.toggle('is-active', i === current));
+}
+addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+// --- Lumina de pe carduri urmărește cursorul ---
+document.querySelectorAll('.project, .skill-group').forEach(card => {
+  card.addEventListener('pointermove', e => {
+    const r = card.getBoundingClientRect();
+    card.style.setProperty('--mx', `${e.clientX - r.left}px`);
+    card.style.setProperty('--my', `${e.clientY - r.top}px`);
+  });
+});
+
+// --- Elementele apar treptat la scroll ---
+if (!reduceMotion && 'IntersectionObserver' in window) {
+  const io = new IntersectionObserver(entries => entries.forEach(en => {
+    if (en.isIntersecting) { en.target.classList.add('is-in'); io.unobserve(en.target); }
+  }), { threshold: 0.12 });
+  document.querySelectorAll('.section__title, .project, .about, .skill-group, .contact__lead, .more')
+    .forEach((el, i) => { el.classList.add('reveal'); el.style.transitionDelay = el.classList.contains('skill-group') ? `${(i % 3) * 90}ms` : ''; io.observe(el); });
+}
+
+// --- Rolul din hero se scrie singur ---
+const typed = document.getElementById('typed');
+const roles = ['aplicații mobile & web', 'React Native', 'ASP.NET & C#', 'interfețe atente la detalii'];
+if (!reduceMotion) {
+  let r = 0, c = roles[0].length, deleting = true;
+  setTimeout(function tick() {
+    const word = roles[r];
+    c += deleting ? -1 : 1;
+    typed.textContent = word.slice(0, c);
+    let delay = deleting ? 35 : 70;
+    if (!deleting && c === word.length) { deleting = true; delay = 2200; }
+    else if (deleting && c === 0) { deleting = false; r = (r + 1) % roles.length; delay = 300; }
+    setTimeout(tick, delay);
+  }, 2200);
+}
+
 // --- Macheta aplicației de salarizare: stat de plată recalculat la schimbarea procentelor ---
 const employees = [
   { name: 'Popescu Ana', base: 6500, spor: 10, premii: 500, retineri: 0 },
