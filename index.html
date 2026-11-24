@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Robert Frant · Portofoliu</title>
+  <meta name="description" content="Portofoliul lui Robert Frant: aplicații mobile și web.">
+  <link rel="icon" href="assets/dulapp/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="nav">
+    <a href="#top" class="nav__brand">robert<span>.</span>frant</a>
+    <nav class="nav__links">
+      <a href="#proiecte">Proiecte</a>
+      <a href="#despre">Despre</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <p class="eyebrow">Salut, eu sunt</p>
+      <h1>Robert Frant</h1>
+      <p class="hero__role">Developer · aplicații mobile &amp; web</p>
+      <p class="hero__lead">
+        Construiesc aplicații de la cap la coadă: interfață, logică și backend.
+        Mai jos găsești proiectele la care am lucrat, începând cu lucrarea mea de licență.
+      </p>
+      <div class="hero__cta">
+        <a class="btn btn--primary" href="#proiecte">Vezi proiectele</a>
+        <a class="btn btn--ghost" href="https://github.com/robertfrant" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </section>
+
+    <!-- PROIECTE -->
+    <section id="proiecte" class="section">
+      <h2 class="section__title"><span>01</span> Proiecte</h2>
+
+      <article class="project">
+        <div class="project__info">
+          <div class="project__head">
+            <img src="assets/dulapp/logo.png" alt="" class="project__logo">
+            <div>
+              <p class="tag">Lucrare de licență · 2025</p>
+              <h3>DulApp</h3>
+            </div>
+          </div>
+          <p class="project__summary">
+            O garderobă digitală pe telefon. Îți fotografiezi hainele, le organizezi pe categorii și
+            combini piese ca să-ți creezi outfit-ul zilei, fără să mai scotocești prin dulap.
+          </p>
+
+          <ul class="features">
+            <li><strong>Cont personal</strong> cu înregistrare și autentificare pe email, plus avatar generat automat din inițiale.</li>
+            <li><strong>Adaugă haine</strong>: fotografie din galerie, categorie (tricou, pantaloni, adidași), brand și detalii, cum ar fi locul unde se află piesa.</li>
+            <li><strong>Creator de outfit</strong>: atingi un slot, alegi piesa din garderobă și se afișează pe ecranul principal.</li>
+            <li><strong>Căutare</strong> după categorie sau brand, într-o grilă cu pull-to-refresh.</li>
+            <li><strong>Profil</strong> cu toate articolele tale, ștergere cu confirmare și delogare.</li>
+          </ul>
+
+          <ul class="stack">
+            <li>React Native</li><li>Expo SDK 53</li><li>Expo Router</li><li>TypeScript</li>
+            <li>NativeWind / Tailwind</li><li>Appwrite</li>
+          </ul>
+
+          <details class="tech">
+            <summary>Detalii tehnice</summary>
+            <ul>
+              <li>Navigare file-based cu <code>expo-router</code>: grupuri <code>(auth)</code> și <code>(tabs)</code>, cu rute tipizate.</li>
+              <li>Backend Appwrite: <em>Auth</em> pentru sesiuni, <em>Databases</em> pentru utilizatori și articole, <em>Storage</em> pentru fotografii.</li>
+              <li>Stare globală (utilizator, sesiune, imagine selectată) printr-un <code>React Context</code>.</li>
+              <li>Hook propriu <code>useAppwrite</code> pentru încărcarea datelor și refetch.</li>
+              <li>Stilizare cu NativeWind (clase Tailwind în React Native) și fontul Poppins.</li>
+            </ul>
+          </details>
+
+          <div class="project__links">
+            <a class="btn btn--primary" href="https://github.com/robertfrant/Licenta" target="_blank" rel="noopener">Cod sursă</a>
+          </div>
+        </div>
+
+        <!-- Machetă interactivă a aplicației -->
+        <div class="phone-wrap">
+          <div class="phone" aria-label="Machetă interactivă DulApp">
+            <div class="phone__notch"></div>
+            <div class="screen">
+              <!-- Home -->
+              <div class="view is-active" data-view="home">
+                <div class="app-top">
+                  <div>
+                    <p class="app-muted">Bine ai venit,</p>
+                    <p class="app-user">robert</p>
+                  </div>
+                  <img src="assets/dulapp/logo.png" alt="" class="app-logo">
+                </div>
+                <p class="app-title">Crează outfit</p>
+                <div class="outfit">
+                  <button class="slot" data-slot="Tricou"><img src="assets/dulapp/shirt.png" alt="Tricou"></button>
+                  <button class="slot" data-slot="Pantaloni"><img src="assets/dulapp/pants.png" alt="Pantaloni"></button>
+                  <button class="slot" data-slot="Adidași"><img src="assets/dulapp/shoe.png" alt="Adidași"></button>
+                </div>
+              </div>
+
+              <!-- Search -->
+              <div class="view" data-view="search">
+                <div class="app-search">🔍 <span id="search-q">Caută…</span></div>
+                <div class="grid" id="search-grid"></div>
+              </div>
+
+              <!-- Add -->
+              <div class="view" data-view="add">
+                <p class="app-h">Adaugă îmbrăcăminte</p>
+                <div class="app-btn">Finalizează și Încarcă</div>
+                <p class="app-label">Adaugă detalii</p>
+                <div class="app-input">Ex. unde se află acest articol</div>
+                <p class="app-label">Adaugă brand</p>
+                <div class="app-input">Ex. Nike</div>
+                <p class="app-label">Fotografie</p>
+                <div class="app-input app-input--upload">⬆ Alege un fișier</div>
+              </div>
+
+              <!-- Profile -->
+              <div class="view" data-view="profile">
+                <div class="app-profile">
+                  <div class="app-avatar">R</div>
+                  <p class="app-user">robert</p>
+                  <p class="app-stat"><strong id="post-count">6</strong><br><span class="app-muted">Posts</span></p>
+                </div>
+                <div class="grid" id="profile-grid"></div>
+              </div>
+
+              <nav class="tabbar">
+                <button class="tab is-active" data-tab="home">Home</button>
+                <button class="tab" data-tab="search">Search</button>
+                <button class="tab" data-tab="add">Add</button>
+                <button class="tab" data-tab="profile">Profile</button>
+              </nav>
+            </div>
+          </div>
+          <p class="phone-hint">Încearcă: atinge un slot sau un tab ↑</p>
+        </div>
+      </article>
+
+      <div class="more">
+        <p>Mai multe proiecte în curând.</p>
+      </div>
+    </section>
+
+    <!-- DESPRE -->
+    <section id="despre" class="section">
+      <h2 class="section__title"><span>02</span> Despre mine</h2>
+      <div class="about">
+        <p>
+          <!-- TODO: înlocuiește cu textul tău -->
+          Sunt absolvent de facultate și îmi place să transform idei în aplicații pe care oamenii le folosesc
+          zi de zi. Pentru licență am construit DulApp, o aplicație mobilă completă, de la design până la backend.
+        </p>
+        <p>
+          Caut oportunități în care să învăț în continuare și să lucrez la produse reale.
+        </p>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="section">
+      <h2 class="section__title"><span>03</span> Skills</h2>
+      <div class="skills">
+        <div class="skill-group">
+          <h4>Limbaje</h4>
+          <ul><li>JavaScript</li><li>TypeScript</li><li>HTML</li><li>CSS</li></ul>
+        </div>
+        <div class="skill-group">
+          <h4>Mobile &amp; Frontend</h4>
+          <ul><li>React Native</li><li>React</li><li>Expo</li><li>Tailwind CSS</li></ul>
+        </div>
+        <div class="skill-group">
+          <h4>Backend &amp; Unelte</h4>
+          <ul><li>Appwrite</li><li>Git &amp; GitHub</li><li>VS Code</li></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section contact">
+      <h2 class="section__title"><span>04</span> Contact</h2>
+      <p class="contact__lead">Ai un proiect sau o oportunitate? Scrie-mi.</p>
+      <div class="hero__cta">
+        <!-- TODO: pune emailul tău -->
+        <a class="btn btn--primary" href="mailto:email@exemplu.com">Trimite un email</a>
+        <a class="btn btn--ghost" href="https://github.com/robertfrant" target="_blank" rel="noopener">GitHub</a>
+        <!-- TODO: link LinkedIn -->
+        <a class="btn btn--ghost" href="#" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">© <span id="year"></span> Robert Frant</footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
